@@ -28,7 +28,15 @@ import {
     FaceSmileIcon,
     PuzzlePieceIcon,
     GiftIcon,
+    UserPlusIcon,
+    HomeIcon,
+    PencilSquareIcon,
+    ExclamationTriangleIcon,
+    ComputerDesktopIcon,
 } from "@heroicons/react/24/outline";
+import { FaHtml5, FaCss3Alt, FaNodeJs, FaJsSquare, FaDatabase } from 'react-icons/fa'
+
+import Link from "next/link";
 
 const colors = {
     blue: "bg-blue-50 text-blue-500",
@@ -44,15 +52,15 @@ const colors = {
 const navListMenuItems = [
     {
         color: "blue",
-        icon: FlagIcon,
-        title: "About us",
-        description: "Learn about our story and our mission statement.",
+        icon: FaHtml5,
+        title: "Html 5",
+        description: "Learn about html 5 and more difficult thing.",
     },
     {
         color: "orange",
-        icon: ChatBubbleOvalLeftIcon,
-        title: "Press",
-        description: "News and writings, press releases, and resources",
+        icon: FaCss3Alt,
+        title: "Css",
+        description: "New thing about Css3, press releases, and resources",
     },
     {
         color: "green",
@@ -109,7 +117,7 @@ function NavListMenu() {
 
     const renderItems = navListMenuItems.map(
         ({ icon, title, description, color }, key) => (
-            <a href="#" key={key}>
+            <Link href="#" key={key}>
                 <MenuItem className="flex items-center gap-3 rounded-lg">
                     <div className={`rounded-lg p-5 ${colors[color]}`}>
                         {React.createElement(icon, {
@@ -130,7 +138,7 @@ function NavListMenu() {
                         </Typography>
                     </div>
                 </MenuItem>
-            </a>
+            </Link>
         )
     );
 
@@ -150,8 +158,8 @@ function NavListMenu() {
                             selected={isMenuOpen || isMobileMenuOpen}
                             onClick={() => setIsMobileMenuOpen((cur) => !cur)}
                         >
-                            <Square3Stack3DIcon className="h-[18px] w-[18px]" />
-                            Resources
+                            <PencilSquareIcon className="h-[18px] w-[18px]" />
+                            Blog article
                             <ChevronDownIcon
                                 strokeWidth={2.5}
                                 className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""
@@ -179,31 +187,34 @@ function NavListMenu() {
 function NavList() {
     return (
         <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
-            <Typography
-                as="a"
-                href="#"
-                variant="small"
-                color="blue-gray"
-                className="font-normal"
-            >
+            <Link href="/" className="text-sm">
                 <ListItem className="flex items-center gap-2 py-2 pr-4">
-                    <CubeTransparentIcon className="h-[18px] w-[18px]" />
-                    Blocks
+                    <HomeIcon className="h-[18px] w-[18px]" />
+                    Start page
                 </ListItem>
-            </Typography>
+            </Link>
+
             <NavListMenu />
-            <Typography
-                as="a"
-                href="#"
-                variant="small"
-                color="blue-gray"
-                className="font-normal"
-            >
+            <Link href="/" className="text-sm">
                 <ListItem className="flex items-center gap-2 py-2 pr-4">
-                    <UserCircleIcon className="h-[18px] w-[18px]" />
-                    Account
+                    <ExclamationTriangleIcon className="h-[18px] w-[18px]" />
+                    Aboute me
                 </ListItem>
-            </Typography>
+
+            </Link>
+            <Link href="/" className="text-sm">
+                <ListItem className="flex items-center gap-2 py-2 pr-4">
+                    <ComputerDesktopIcon className="h-[18px] w-[18px]" />
+                    My projects
+                </ListItem>
+
+            </Link>
+            <Link className="text-sm" href='/'>
+                <ListItem className="flex items-center gap-2 py-2 pr-4">
+                    <UserPlusIcon className="h-[18px] w-[18px]" />
+                    Contact me
+                </ListItem>
+            </Link>
         </List>
     );
 }
