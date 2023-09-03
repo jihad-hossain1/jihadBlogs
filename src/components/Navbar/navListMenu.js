@@ -1,4 +1,6 @@
-import React from "react";
+'use client'
+
+import React, { createElement, useEffect, useState } from "react";
 import {
     Navbar,
     Collapse,
@@ -15,17 +17,9 @@ import {
 } from "@material-tailwind/react";
 import {
     ChevronDownIcon,
-    UserCircleIcon,
-    CubeTransparentIcon,
     Bars3Icon,
     XMarkIcon,
-    FlagIcon,
-    ChatBubbleOvalLeftIcon,
     UsersIcon,
-    FolderIcon,
-    Square3Stack3DIcon,
-    RocketLaunchIcon,
-    FaceSmileIcon,
     PuzzlePieceIcon,
     GiftIcon,
     UserPlusIcon,
@@ -34,10 +28,13 @@ import {
     ExclamationTriangleIcon,
     ComputerDesktopIcon,
 } from "@heroicons/react/24/outline";
-import { FaHtml5, FaCss3Alt, FaNodeJs, FaJsSquare, FaDatabase } from 'react-icons/fa'
-
+import { FaHtml5, FaCss3Alt, FaNodeJs, FaJsSquare, FaDatabase, FaCss3, FaReact } from 'react-icons/fa'
+// import expressIcon from '@/assest/ex.ico'
+import { DiMongodb, DiNodejs, LiaUserCogSolid } from "react-icons/di"
+import { MdShoppingCartCheckout } from "react-icons/md"
 import Link from "next/link";
-
+// import { next } from '@/assest/next.svg'
+// import next from "next/types";
 const colors = {
     blue: "bg-blue-50 text-blue-500",
     orange: "bg-orange-50 text-orange-500",
@@ -47,20 +44,82 @@ const colors = {
     teal: "bg-teal-50 text-teal-500",
     cyan: "bg-cyan-50 text-cyan-500",
     pink: "bg-pink-50 text-pink-500",
+    black: "bg-gray-200 text-gray-900",
 };
 
 const navListMenuItems = [
     {
-        color: "blue",
+        color: "orange",
         icon: FaHtml5,
         title: "Html 5",
         description: "Learn about html 5 and more difficult thing.",
     },
     {
-        color: "orange",
+        color: "blue",
         icon: FaCss3Alt,
         title: "Css",
         description: "New thing about Css3, press releases, and resources",
+    },
+    {
+        color: "blue",
+        icon: FaCss3,
+        title: "Css Framework",
+        description: "New thing about Css Framework, and resources",
+    },
+
+    {
+        color: "orange",
+        icon: FaJsSquare,
+        title: "JavaScript",
+        description: "All basic to advanced topic are include.",
+    },
+    {
+        color: "green",
+        icon: DiMongodb,
+        title: "Mongodb",
+        description: "Easy way to manage your database by Mongodb",
+    },
+    {
+        color: "teal",
+        icon: DiNodejs,
+        title: "Node Js",
+        description: "Learn about Node.js for in your project.",
+    },
+    {
+        color: "teal",
+        icon: FaNodeJs,
+        title: "Express Js",
+        description: "Learn about Express.js for in your backEnd project.",
+    },
+    {
+        color: "blue",
+        icon: FaReact,
+        title: "React",
+        description: "Learn about React for in your frontEnd project.",
+    },
+    {
+        color: "black",
+        icon: FaNodeJs,
+        title: "Next js",
+        description: "Learn about Next.js for in your seo project.",
+    },
+    {
+        color: "blue",
+        icon: FaNodeJs,
+        title: "Redux",
+        description: "Learn about Redux for in your state management.",
+    },
+    {
+        color: "cyan",
+        icon: PuzzlePieceIcon,
+        title: "UI Kits",
+        description: "High quality UI Kits helps you to 2x faster.",
+    },
+    {
+        color: "pink",
+        icon: GiftIcon,
+        title: "Open Source",
+        description: "List of all our open-source projects, it's all free.",
     },
     {
         color: "green",
@@ -77,50 +136,20 @@ const navListMenuItems = [
                 />
             </div>
         ),
-        description: "We are always looking for talented people. Join us!",
-    },
-    {
-        color: "blue-gray",
-        icon: FolderIcon,
-        title: "Legal",
-        description: "All the stuff that we dan from legal made us add.",
-    },
-    {
-        color: "purple",
-        icon: RocketLaunchIcon,
-        title: "Products",
-        description: "Checkout our products that helps a startup running.",
-    },
-    {
-        color: "teal",
-        icon: FaceSmileIcon,
-        title: "Icons",
-        description: "Set of beautiful icons that you can use in your project.",
-    },
-    {
-        color: "cyan",
-        icon: PuzzlePieceIcon,
-        title: "UI Kits",
-        description: "High quality UI Kits helps you to 2x faster.",
-    },
-    {
-        color: "pink",
-        icon: GiftIcon,
-        title: "Open Source",
-        description: "List of all our open-source projects, it's all free.",
+        description: "We are always looking for talented people. Join us my team!",
     },
 ];
 
 function NavListMenu() {
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const renderItems = navListMenuItems.map(
         ({ icon, title, description, color }, key) => (
             <Link href="#" key={key}>
                 <MenuItem className="flex items-center gap-3 rounded-lg">
                     <div className={`rounded-lg p-5 ${colors[color]}`}>
-                        {React.createElement(icon, {
+                        {createElement(icon, {
                             strokeWidth: 2,
                             className: "h-6 w-6",
                         })}
@@ -220,15 +249,15 @@ function NavList() {
 }
 
 export function NavbarWithMegaMenu() {
-    const [openNav, setOpenNav] = React.useState(false);
+    const [openNav, setOpenNav] = useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         window.addEventListener(
             "resize",
             () => window.innerWidth >= 960 && setOpenNav(false)
         );
     }, []);
-
+    const user = null;
     return (
         <Navbar className="mx-auto max-w-screen-xl px-4 py-2">
             <div className="flex items-center justify-between text-blue-gray-900">
@@ -244,11 +273,16 @@ export function NavbarWithMegaMenu() {
                     <NavList />
                 </div>
                 <div className="hidden gap-2 lg:flex">
-                    <Button variant="text" size="sm" color="blue-gray">
+                    {/* <Button variant="text" size="sm" color="blue-gray">
                         Sign In
-                    </Button>
+                    </Button> */}
                     <Button variant="gradient" size="sm">
                         Sign Up
+                    </Button>
+                    <Button variant="outlined" size="sm">
+                        <Link href='/' className="flex space-x-2 text-black items-center">
+                            <MdShoppingCartCheckout className="text-2xl"></MdShoppingCartCheckout> <span>Buy product</span>
+                        </Link>
                     </Button>
                 </div>
                 <IconButton
@@ -270,8 +304,14 @@ export function NavbarWithMegaMenu() {
                     <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
                         Sign In
                     </Button>
-                    <Button variant="gradient" size="sm" fullWidth>
+                    {/* <Button variant="gradient" size="sm" fullWidth>
                         Sign Up
+                    </Button> */}
+                    <Button variant="outlined" size="sm" fullWidth cen>
+                        <Link href='/' className="flex space-x-2 text-black items-center">
+                            <MdShoppingCartCheckout className="text-xl"></MdShoppingCartCheckout>
+                            <span>Buy product</span>
+                        </Link>
                     </Button>
                 </div>
             </Collapse>

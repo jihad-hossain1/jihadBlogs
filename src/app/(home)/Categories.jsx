@@ -7,7 +7,7 @@ const Categories = async () => {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 m-4">
         {categories.map((category, index) => (
           <SingleCategory key={index} category={category}></SingleCategory>
         ))}
