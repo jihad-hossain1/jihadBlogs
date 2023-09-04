@@ -9,8 +9,13 @@ const TopArticle = async () => {
   return (
     <div>
       {/* <h4>top ar</h4> */}
-      <div className="grid gap-5 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full m-2">
-        {articles.map((article) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5  sm:max-w-sm sm:mx-auto lg:max-w-full p-2 md:px-10">
+        {articles.slice(0, 2).map((article) => (
+          <SingleArticle key={article._id} article={article}></SingleArticle>
+        ))}
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5  sm:max-w-sm sm:mx-auto lg:max-w-full p-2 md:px-10">
+        {articles.slice(2, 5).map((article) => (
           <SingleArticle key={article._id} article={article}></SingleArticle>
         ))}
       </div>

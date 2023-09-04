@@ -28,13 +28,14 @@ import {
     ExclamationTriangleIcon,
     ComputerDesktopIcon,
 } from "@heroicons/react/24/outline";
-import { FaHtml5, FaCss3Alt, FaNodeJs, FaJsSquare, FaDatabase, FaCss3, FaReact } from 'react-icons/fa'
-// import expressIcon from '@/assest/ex.ico'
-import { DiMongodb, DiNodejs, LiaUserCogSolid } from "react-icons/di"
-import { MdShoppingCartCheckout } from "react-icons/md"
+import { FaHtml5, FaCss3Alt, FaNodeJs, FaJsSquare, FaUserLock, FaCss3, FaReact, } from 'react-icons/fa'
+
+import { DiMongodb, DiNodejs } from "react-icons/di"
+import { MdShoppingCartCheckout, MdOutlineLogout, MdOutlineLogin } from "react-icons/md"
+import { AiOutlineUserAdd } from "react-icons/ai";
 import Link from "next/link";
-// import { next } from '@/assest/next.svg'
-// import next from "next/types";
+import Image from "next/image";
+
 const colors = {
     blue: "bg-blue-50 text-blue-500",
     orange: "bg-orange-50 text-orange-500",
@@ -140,6 +141,117 @@ const navListMenuItems = [
     },
 ];
 
+function AccoutListMenu() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    return (
+        <>
+            <Menu
+                open={isMenuOpen}
+                handler={setIsMenuOpen}
+                offset={{ mainAxis: 20 }}
+                placement="bottom"
+                allowHover={true}
+            >
+                <MenuHandler>
+                    <Typography as="div" variant="small" className="font-normal">
+                        <ListItem
+                            className="flex items-center gap-2 py-2 pr-4"
+                            selected={isMenuOpen || isMobileMenuOpen}
+                            onClick={() => setIsMobileMenuOpen((cur) => !cur)}
+                        >
+                            <FaUserLock className="h-[18px] w-[18px]" />
+                            Account
+                            <ChevronDownIcon
+                                strokeWidth={2.5}
+                                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""
+                                    }`}
+                            />
+                            <ChevronDownIcon
+                                strokeWidth={2.5}
+                                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""
+                                    }`}
+                            />
+                        </ListItem>
+                    </Typography>
+                </MenuHandler>
+                <MenuList className="hidden max-w-screen-xl rounded-xl lg:block">
+                    <ul className="grid grid-cols-1 space-y-2">
+                        <Link href={`login`} className="flex space-x-2 mb-2">
+                            <MdOutlineLogin className="text-xl"></MdOutlineLogin>
+                            <Typography
+                                variant="h6"
+                                color="blue-gray"
+                                className="flex items-center text-sm"
+                            >
+                                Log In
+                            </Typography>
+                        </Link>
+                        <Link href={`#`} className="flex space-x-2 mb-2">
+                            <MdOutlineLogout className="text-xl"></MdOutlineLogout>
+                            <Typography
+                                variant="h6"
+                                color="blue-gray"
+                                className="flex items-center text-sm"
+                            >
+                                Log Out
+                            </Typography>
+                        </Link>
+                        <Link href={`register`} className="flex space-x-2 mb-2">
+                            <AiOutlineUserAdd className="text-xl"></AiOutlineUserAdd>
+                            {/* <img className="w-10" src="https://i.ibb.co/LrshMpN/icons8-create.gif" alt="" /> */}
+                            <Typography
+                                variant="h6"
+                                color="blue-gray"
+                                className="flex items-center text-sm"
+                            >
+                                Create account
+                            </Typography>
+                        </Link>
+
+                    </ul>
+                </MenuList>
+            </Menu>
+            <div className="block lg:hidden">
+                <Collapse open={isMobileMenuOpen}>
+                    <Link href={`login`} className="flex space-x-2 mb-2">
+                        <MdOutlineLogin className="text-xl"></MdOutlineLogin>
+                        <Typography
+                            variant="h6"
+                            color="blue-gray"
+                            className="flex items-center text-sm"
+                        >
+                            Log In
+                        </Typography>
+                    </Link>
+                    <Link href={`#`} className="flex space-x-2 mb-2">
+                        <MdOutlineLogout className="text-xl"></MdOutlineLogout>
+                        <Typography
+                            variant="h6"
+                            color="blue-gray"
+                            className="flex items-center text-sm"
+                        >
+                            Log Out
+                        </Typography>
+                    </Link>
+                    <Link href={`register`} className="flex space-x-2 mb-2">
+                        <AiOutlineUserAdd className="text-xl"></AiOutlineUserAdd>
+                        {/* <img className="w-10" src="https://i.ibb.co/LrshMpN/icons8-create.gif" alt="" /> */}
+                        <Typography
+                            variant="h6"
+                            color="blue-gray"
+                            className="flex items-center text-sm"
+                        >
+                            Create account
+                        </Typography>
+                    </Link>
+
+                </Collapse>
+            </div>
+        </>
+    )
+}
 function NavListMenu() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -171,8 +283,10 @@ function NavListMenu() {
         )
     );
 
+
+
     return (
-        <React.Fragment>
+        <>
             <Menu
                 open={isMenuOpen}
                 handler={setIsMenuOpen}
@@ -209,7 +323,7 @@ function NavListMenu() {
             <div className="block lg:hidden">
                 <Collapse open={isMobileMenuOpen}>{renderItems}</Collapse>
             </div>
-        </React.Fragment>
+        </>
     );
 }
 
@@ -224,13 +338,7 @@ function NavList() {
             </Link>
 
             <NavListMenu />
-            <Link href="/" className="text-sm">
-                <ListItem className="flex items-center gap-2 py-2 pr-4">
-                    <ExclamationTriangleIcon className="h-[18px] w-[18px]" />
-                    Aboute me
-                </ListItem>
 
-            </Link>
             <Link href="/" className="text-sm">
                 <ListItem className="flex items-center gap-2 py-2 pr-4">
                     <ComputerDesktopIcon className="h-[18px] w-[18px]" />
@@ -244,6 +352,15 @@ function NavList() {
                     Contact me
                 </ListItem>
             </Link>
+            {/* <Link className="text-sm" href='/'>
+                <ListItem className="flex items-center gap-2 py-2 pr-4">
+                    <FaUserLock className="h-[18px] w-[18px]" />
+
+                    Account
+
+                </ListItem>
+            </Link> */}
+            <AccoutListMenu />
         </List>
     );
 }
@@ -260,7 +377,7 @@ export function NavbarWithMegaMenu() {
     const user = null;
     return (
         <Navbar className="mx-auto max-w-screen-xl px-4 py-2">
-            <div className="flex items-center justify-between text-blue-gray-900">
+            <div className="flex items-center justify-between text-blue-gray-700">
                 <Typography
                     as="a"
                     href="#"
@@ -273,17 +390,18 @@ export function NavbarWithMegaMenu() {
                     <NavList />
                 </div>
                 <div className="hidden gap-2 lg:flex">
-                    {/* <Button variant="text" size="sm" color="blue-gray">
-                        Sign In
-                    </Button> */}
-                    <Button variant="gradient" size="sm">
-                        Sign Up
-                    </Button>
-                    <Button variant="outlined" size="sm">
+                    <ListItem className="flex items-center gap-2 py-2 pr-4">
+                        <MdShoppingCartCheckout className="h-[18px] w-[18px]" />
+
+                        Buy product
+
+                    </ListItem>
+
+                    {/* <Button variant="outlined" size="sm">
                         <Link href='/' className="flex space-x-2 text-black items-center">
                             <MdShoppingCartCheckout className="text-2xl"></MdShoppingCartCheckout> <span>Buy product</span>
                         </Link>
-                    </Button>
+                    </Button> */}
                 </div>
                 <IconButton
                     variant="text"
@@ -300,19 +418,13 @@ export function NavbarWithMegaMenu() {
             </div>
             <Collapse open={openNav}>
                 <NavList />
-                <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-                    <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
-                        Sign In
-                    </Button>
-                    {/* <Button variant="gradient" size="sm" fullWidth>
-                        Sign Up
-                    </Button> */}
-                    <Button variant="outlined" size="sm" fullWidth cen>
-                        <Link href='/' className="flex space-x-2 text-black items-center">
-                            <MdShoppingCartCheckout className="text-xl"></MdShoppingCartCheckout>
-                            <span>Buy product</span>
-                        </Link>
-                    </Button>
+                <div className="lg:hidden">
+
+                    <Link href='/' className="flex space-x-2 text-black items-center mb-4">
+                        <MdShoppingCartCheckout className="text-xl"></MdShoppingCartCheckout>
+                        <span>Buy product</span>
+                    </Link>
+
                 </div>
             </Collapse>
         </Navbar>
