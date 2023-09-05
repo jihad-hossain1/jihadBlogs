@@ -178,6 +178,50 @@ function AccoutListMenu() {
                 </MenuHandler>
                 <MenuList className="hidden max-w-screen-xl rounded-xl lg:block">
                     <ul className="grid grid-cols-1 space-y-2">
+                        <ListItem>
+                            <Link href={`login`} className="flex space-x-2 mb-2">
+                                <MdOutlineLogin className="text-xl"></MdOutlineLogin>
+                                <Typography
+                                    variant="h6"
+                                    color="blue-gray"
+                                    className="flex items-center text-sm"
+                                >
+                                    Log In
+                                </Typography>
+                            </Link>
+                        </ListItem>
+                        <ListItem>
+                            <Link href={`#`} className="flex space-x-2 mb-2">
+                                <MdOutlineLogout className="text-xl"></MdOutlineLogout>
+                                <Typography
+                                    variant="h6"
+                                    color="blue-gray"
+                                    className="flex items-center text-sm"
+                                >
+                                    Log Out
+                                </Typography>
+                            </Link>
+                        </ListItem>
+                        <ListItem>
+                            <Link href={`register`} className="flex space-x-2 mb-2">
+                                <AiOutlineUserAdd className="text-xl"></AiOutlineUserAdd>
+                                {/* <img className="w-10" src="https://i.ibb.co/LrshMpN/icons8-create.gif" alt="" /> */}
+                                <Typography
+                                    variant="h6"
+                                    color="blue-gray"
+                                    className="flex items-center text-sm"
+                                >
+                                    Create account
+                                </Typography>
+                            </Link>
+                        </ListItem>
+
+                    </ul>
+                </MenuList>
+            </Menu>
+            <div className="block lg:hidden">
+                <Collapse open={isMobileMenuOpen}>
+                    <ListItem>
                         <Link href={`login`} className="flex space-x-2 mb-2">
                             <MdOutlineLogin className="text-xl"></MdOutlineLogin>
                             <Typography
@@ -188,6 +232,8 @@ function AccoutListMenu() {
                                 Log In
                             </Typography>
                         </Link>
+                    </ListItem>
+                    <ListItem>
                         <Link href={`#`} className="flex space-x-2 mb-2">
                             <MdOutlineLogout className="text-xl"></MdOutlineLogout>
                             <Typography
@@ -198,6 +244,8 @@ function AccoutListMenu() {
                                 Log Out
                             </Typography>
                         </Link>
+                    </ListItem>
+                    <ListItem>
                         <Link href={`register`} className="flex space-x-2 mb-2">
                             <AiOutlineUserAdd className="text-xl"></AiOutlineUserAdd>
                             {/* <img className="w-10" src="https://i.ibb.co/LrshMpN/icons8-create.gif" alt="" /> */}
@@ -209,44 +257,7 @@ function AccoutListMenu() {
                                 Create account
                             </Typography>
                         </Link>
-
-                    </ul>
-                </MenuList>
-            </Menu>
-            <div className="block lg:hidden">
-                <Collapse open={isMobileMenuOpen}>
-                    <Link href={`login`} className="flex space-x-2 mb-2">
-                        <MdOutlineLogin className="text-xl"></MdOutlineLogin>
-                        <Typography
-                            variant="h6"
-                            color="blue-gray"
-                            className="flex items-center text-sm"
-                        >
-                            Log In
-                        </Typography>
-                    </Link>
-                    <Link href={`#`} className="flex space-x-2 mb-2">
-                        <MdOutlineLogout className="text-xl"></MdOutlineLogout>
-                        <Typography
-                            variant="h6"
-                            color="blue-gray"
-                            className="flex items-center text-sm"
-                        >
-                            Log Out
-                        </Typography>
-                    </Link>
-                    <Link href={`register`} className="flex space-x-2 mb-2">
-                        <AiOutlineUserAdd className="text-xl"></AiOutlineUserAdd>
-                        {/* <img className="w-10" src="https://i.ibb.co/LrshMpN/icons8-create.gif" alt="" /> */}
-                        <Typography
-                            variant="h6"
-                            color="blue-gray"
-                            className="flex items-center text-sm"
-                        >
-                            Create account
-                        </Typography>
-                    </Link>
-
+                    </ListItem>
                 </Collapse>
             </div>
         </>
