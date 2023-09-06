@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 // import Container from '@/components/Container/Container'
 import Navbar from '@/components/Navbar/Navbar'
 import Toaster from '@/components/Toaster/Toaster'
+import Provider from '@/providers'
 
 const inter = Inter({ subsets: ['latin'] })
 // import Toaster from "@/components/Toaster";
@@ -17,14 +18,16 @@ export default function RootLayout({ children }) {
     <html lang="en" data-theme="dark" className='translate-all'>
       <body className={inter.className}>
 
-        <div className='flex min-h-screen flex-col justify-between'>
-          <div>
-            <Navbar></Navbar>
-            <main>{children}</main>
-          </div>
-          <Footer></Footer>
+        <Provider>
+          <div className='flex min-h-screen flex-col justify-between'>
+            <div>
+              <Navbar></Navbar>
+              <main>{children}</main>
+            </div>
+            <Footer></Footer>
 
-        </div>
+          </div>
+        </Provider>
         <Toaster></Toaster>
       </body>
     </html>

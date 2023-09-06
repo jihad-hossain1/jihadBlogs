@@ -141,7 +141,7 @@ const navListMenuItems = [
     },
 ];
 
-function AccoutListMenu() {
+function AccoutListMenu({ handleLogout, user }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -178,43 +178,54 @@ function AccoutListMenu() {
                 </MenuHandler>
                 <MenuList className="hidden max-w-screen-xl rounded-xl lg:block">
                     <ul className="grid grid-cols-1 space-y-2">
-                        <ListItem>
-                            <Link href={`login`} className="flex space-x-2 mb-2">
-                                <MdOutlineLogin className="text-xl"></MdOutlineLogin>
-                                <Typography
-                                    variant="h6"
-                                    color="blue-gray"
-                                    className="flex items-center text-sm"
-                                >
-                                    Log In
-                                </Typography>
-                            </Link>
-                        </ListItem>
-                        <ListItem>
-                            <Link href={`#`} className="flex space-x-2 mb-2">
-                                <MdOutlineLogout className="text-xl"></MdOutlineLogout>
-                                <Typography
-                                    variant="h6"
-                                    color="blue-gray"
-                                    className="flex items-center text-sm"
-                                >
-                                    Log Out
-                                </Typography>
-                            </Link>
-                        </ListItem>
-                        <ListItem>
-                            <Link href={`register`} className="flex space-x-2 mb-2">
-                                <AiOutlineUserAdd className="text-xl"></AiOutlineUserAdd>
-                                {/* <img className="w-10" src="https://i.ibb.co/LrshMpN/icons8-create.gif" alt="" /> */}
-                                <Typography
-                                    variant="h6"
-                                    color="blue-gray"
-                                    className="flex items-center text-sm"
-                                >
-                                    Create account
-                                </Typography>
-                            </Link>
-                        </ListItem>
+                        {
+                            user ? <>
+                                <ListItem className="flex flex-col items-center">
+                                    <img className="w-10 rounded-full" src={user?.photoURL} alt="" />
+                                    <h4>{user?.displayName}</h4>
+                                </ListItem>
+                                <ListItem onClick={handleLogout}>
+                                    <Link href={`#`} className="flex space-x-2 mb-2">
+                                        <MdOutlineLogout className="text-xl"></MdOutlineLogout>
+                                        <Typography
+                                            variant="h6"
+                                            color="blue-gray"
+                                            className="flex items-center text-sm"
+                                        >
+                                            Log Out
+                                        </Typography>
+                                    </Link>
+                                </ListItem>
+                            </> : <>
+                                <ListItem>
+                                    <Link href={`login`} className="flex space-x-2 mb-2">
+                                        <MdOutlineLogin className="text-xl"></MdOutlineLogin>
+                                        <Typography
+                                            variant="h6"
+                                            color="blue-gray"
+                                            className="flex items-center text-sm"
+                                        >
+                                            Log In
+                                        </Typography>
+                                    </Link>
+                                </ListItem>
+                                <ListItem>
+                                    <Link href={`register`} className="flex space-x-2 mb-2">
+                                        <AiOutlineUserAdd className="text-xl"></AiOutlineUserAdd>
+                                        {/* <img className="w-10" src="https://i.ibb.co/LrshMpN/icons8-create.gif" alt="" /> */}
+                                        <Typography
+                                            variant="h6"
+                                            color="blue-gray"
+                                            className="flex items-center text-sm"
+                                        >
+                                            Create account
+                                        </Typography>
+                                    </Link>
+                                </ListItem>
+                            </>
+                        }
+
+
 
                     </ul>
                 </MenuList>
@@ -233,7 +244,7 @@ function AccoutListMenu() {
                             </Typography>
                         </Link>
                     </ListItem>
-                    <ListItem>
+                    <ListItem onClick={handleLogout}>
                         <Link href={`#`} className="flex space-x-2 mb-2">
                             <MdOutlineLogout className="text-xl"></MdOutlineLogout>
                             <Typography
@@ -248,7 +259,7 @@ function AccoutListMenu() {
                     <ListItem>
                         <Link href={`register`} className="flex space-x-2 mb-2">
                             <AiOutlineUserAdd className="text-xl"></AiOutlineUserAdd>
-                            {/* <img className="w-10" src="https://i.ibb.co/LrshMpN/icons8-create.gif" alt="" /> */}
+
                             <Typography
                                 variant="h6"
                                 color="blue-gray"
@@ -338,7 +349,7 @@ function NavListMenu() {
     );
 }
 
-function NavList() {
+function NavList({ handleLogout, user }) {
     return (
         <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
             <Link href="/" className="text-sm">
@@ -363,21 +374,15 @@ function NavList() {
                     Contact me
                 </ListItem>
             </Link>
-            {/* <Link className="text-sm" href='/'>
-                <ListItem className="flex items-center gap-2 py-2 pr-4">
-                    <FaUserLock className="h-[18px] w-[18px]" />
 
-                    Account
-
-                </ListItem>
-            </Link> */}
-            <AccoutListMenu />
+            <AccoutListMenu handleLogout={handleLogout} user={user} />
         </List>
     );
 }
 
-export function NavbarWithMegaMenu() {
+export function NavbarWithMegaMenu({ handleLogout, user }) {
     const [openNav, setOpenNav] = useState(false);
+
 
     useEffect(() => {
         window.addEventListener(
@@ -385,7 +390,7 @@ export function NavbarWithMegaMenu() {
             () => window.innerWidth >= 960 && setOpenNav(false)
         );
     }, []);
-    const user = null;
+
     return (
         <Navbar className="mx-auto max-w-screen-xl px-4 py-2">
             <div className="flex items-center justify-between text-blue-gray-700">
@@ -398,7 +403,7 @@ export function NavbarWithMegaMenu() {
                     Jihad Blogs
                 </Typography>
                 <div className="hidden lg:block">
-                    <NavList />
+                    <NavList handleLogout={handleLogout} user={user} />
                 </div>
                 <div className="hidden gap-2 lg:flex">
                     <ListItem className="flex items-center gap-2 py-2 pr-4">
@@ -408,11 +413,7 @@ export function NavbarWithMegaMenu() {
 
                     </ListItem>
 
-                    {/* <Button variant="outlined" size="sm">
-                        <Link href='/' className="flex space-x-2 text-black items-center">
-                            <MdShoppingCartCheckout className="text-2xl"></MdShoppingCartCheckout> <span>Buy product</span>
-                        </Link>
-                    </Button> */}
+
                 </div>
                 <IconButton
                     variant="text"
@@ -428,7 +429,7 @@ export function NavbarWithMegaMenu() {
                 </IconButton>
             </div>
             <Collapse open={openNav}>
-                <NavList />
+                <NavList handleLogout={handleLogout} user={user} />
                 <div className="lg:hidden">
 
                     <Link href='/' className="flex space-x-2 text-black items-center mb-4">

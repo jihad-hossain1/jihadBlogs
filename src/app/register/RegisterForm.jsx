@@ -13,7 +13,10 @@ import FileUpload from "./FileUpload";
 const RegisterForm = () => {
   return (
     <>
-      <div className="flex justify-center h-screen items-center">
+      <div className="flex flex-col md:flex-row  h-screen items-center max-w-[1000px] mx-auto">
+        <div>
+          <img src="https://i.ibb.co/X3Gg6rg/sammy-line-41.png" alt="" />
+        </div>
         <Card color="transparent" shadow={false}>
           <Typography variant="h4" color="blue-gray">
             Sign Up
