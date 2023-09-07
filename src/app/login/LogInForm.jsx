@@ -49,7 +49,7 @@ export function LogInForm() {
           <div className="flex gap-4 item-center mt-4">
             <button
               type="button"
-              className="py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+              className="py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-white hover:text-black focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-500 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-1 focus:ring-offset-1  rounded-lg hover:border-2 hover:border-blue-300 "
             >
               <svg
                 width="20"
@@ -66,7 +66,7 @@ export function LogInForm() {
             <button
               onClick={handleGoogleLogin}
               type="button"
-              className="py-2 px-4 flex justify-center items-center  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+              className="py-2 px-4 flex justify-center items-center  bg-red-600 hover:bg-white hover:text-black focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-500 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-1 focus:ring-offset-1  rounded-lg hover:border-2 hover:border-red-300 "
             >
               <svg
                 width="20"
@@ -86,25 +86,12 @@ export function LogInForm() {
               <Input size="lg" label="Email" type="email" required />
               <Input type="password" size="lg" label="Password" required />
             </div>
-            {/* <Checkbox
-            label={
-              <Typography
-                variant="small"
-                color="gray"
-                className="flex items-center font-normal"
-              >
-                I agree the
-                <Link
-                  href="#"
-                  className="font-medium transition-colors hover:text-gray-900"
-                >
-                  &nbsp;Terms and Conditions
-                </Link>
-              </Typography>
-            }
-            containerProps={{ className: "-ml-2.5" }}
-          /> */}
-            <Button type="submit" className="mt-6" fullWidth>
+
+            <Button
+              type="submit"
+              className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-500 ease-in bg-black shadow-md hover:text-black hover:bg-white focus:outline-none focus:ring-2 hover:border hover:border-neutral-600"
+              fullWidth
+            >
               Login
             </Button>
           </form>
