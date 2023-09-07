@@ -1,6 +1,7 @@
 "use client";
 import Container from "@/components/Container/Container";
 import useAuth from "@/hooks/useAuth";
+import { createJWT } from "@/utils/createJWT";
 import {
   Card,
   Input,
@@ -9,20 +10,51 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useForm } from "react-hook-form";
 
 import { toast } from "react-hot-toast";
 
 export function LogInForm() {
-  const { signIn, googleLogin, profileUpdate } = useAuth();
+  const { signIn, googleLogin } = useAuth();
+
+  const search = useSearchParams();
+  const from = search.get("redirectUrl") || "/";
+  const { replace } = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    reset,
+    setValue,
+    getValues,
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    const { email, password } = data;
+    const toastId = toast.loading("Loading....");
+    try {
+      const user = await signIn(email, password);
+      await createJWT({ email });
+      toast.dismiss(toastId);
+      toast.success("User signed in successfully");
+      replace(from);
+    } catch (error) {
+      toast.dismiss(toastId);
+      toast.error(error.message || "User noat signed in");
+    }
+  };
 
   const handleGoogleLogin = async () => {
     const toastId = toast.loading("Loading....");
     try {
       const { user } = await googleLogin();
-      // await createJWT({ email: user.email });
+      await createJWT({ email: user.email });
       toast.dismiss(toastId);
       toast.success("User signed in successfully");
-      // replace(from);
+      replace(from);
     } catch (error) {
       toast.dismiss(toastId);
       toast.error(error.message || "User not signed in");
@@ -82,10 +114,25 @@ export function LogInForm() {
               Google
             </button>
           </div>
-          <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+          >
             <div className="mb-4 flex flex-col gap-6">
-              <Input size="lg" label="Email" type="email" required />
-              <Input type="password" size="lg" label="Password" required />
+              <Input
+                {...register("email")}
+                size="lg"
+                label="Email"
+                type="email"
+                required
+              />
+              <Input
+                {...register("password")}
+                type="password"
+                size="lg"
+                label="Password"
+                required
+              />
             </div>
 
             <Button

@@ -12,9 +12,11 @@ import FileUpload from "./FileUpload";
 import useAuth from "@/hooks/useAuth";
 import { toast } from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { createJWT } from "@/utils/createJWT";
 
 const RegisterForm = () => {
-  const { signIn, googleLogin, profileUpdate } = useAuth();
+  const { createUser, googleLogin, profileUpdate } = useAuth();
   const search = useSearchParams();
   const from = search.get("redirectUrl") || "/";
   const { replace } = useRouter();
@@ -54,14 +56,35 @@ const RegisterForm = () => {
     }
   };
 
+  const onSubmit = async (data) => {
+    const { name, email, password, photo } = data;
+
+    const toastId = toast.loading("Loading....");
+    try {
+      const user = await createUser(email, password);
+      await createJWT({ email });
+      await profileUpdate({
+        displayName: name,
+        photoURL: photo,
+      });
+      toast.dismiss(toastId);
+      toast.success("User signed in successfully");
+      replace(from);
+      reset();
+    } catch (error) {
+      toast.dismiss(toastId);
+      toast.error(error.message || "User noat signed in");
+    }
+  };
+
   const handleGoogleLogin = async () => {
     const toastId = toast.loading("Loading....");
     try {
       const { user } = await googleLogin();
-      // await createJWT({ email: user.email });
+      await createJWT({ email: user.email });
       toast.dismiss(toastId);
       toast.success("User signed in successfully");
-      // replace(from);
+      replace(from);
     } catch (error) {
       toast.dismiss(toastId);
       toast.error(error.message || "User not signed in");
@@ -120,18 +143,51 @@ const RegisterForm = () => {
               Google
             </button>
           </div>
-          <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+          >
             <div className="mb-4 flex flex-col gap-6">
-              <Input size="lg" type="text" label="Name" required />
-              <Input size="lg" label="Email" type="email" required />
-              <Input type="password" size="lg" label="Password" required />
               <Input
+                {...register("name")}
+                autoComplete="name"
+                size="lg"
+                type="text"
+                label="Name"
+                required
+              />
+              <Input
+                autoComplete="email"
+                {...register("email")}
+                size="lg"
+                label="Email"
+                type="email"
+                required
+              />
+              <Input
+                autoComplete="new-password"
+                {...register("password")}
+                type="password"
+                size="lg"
+                label="Password"
+                required
+              />
+              <Input
+                autoComplete="new-password"
+                {...register("cpassword")}
                 type="password"
                 size="lg"
                 label="Confirm Password"
                 required
               />
-              <Input type="file" size="lg" label="photo upload" required />
+              <Input
+                id="photo"
+                onChange={uploadImage}
+                type="file"
+                size="lg"
+                label="photo upload"
+                required
+              />
               {/* <FileUpload></FileUpload> */}
             </div>
             <Checkbox
