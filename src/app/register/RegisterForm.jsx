@@ -11,9 +11,48 @@ import Link from "next/link";
 import FileUpload from "./FileUpload";
 import useAuth from "@/hooks/useAuth";
 import { toast } from "react-hot-toast";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const RegisterForm = () => {
-  const { signIn, googleLogin } = useAuth();
+  const { signIn, googleLogin, profileUpdate } = useAuth();
+  const search = useSearchParams();
+  const from = search.get("redirectUrl") || "/";
+  const { replace } = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    reset,
+    setValue,
+    getValues,
+  } = useForm();
+
+  const uploadImage = async (event) => {
+    const formData = new FormData();
+    if (!event.target.files[0]) return;
+    formData.append("image", event.target.files[0]);
+    const toastId = toast.loading("Image uploading...");
+    try {
+      const res = await fetch(
+        `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      if (!res.ok) throw new Error("Faild to upload image");
+      const data = await res.json();
+      console.log(data);
+      toast.dismiss(toastId);
+      toast.success("iMage uploaded successfully!");
+      setValue("photo", data.data.url);
+    } catch (error) {
+      toast.error("iMage not uploaded");
+      toast.dismiss(toastId);
+    }
+  };
 
   const handleGoogleLogin = async () => {
     const toastId = toast.loading("Loading....");
@@ -29,10 +68,14 @@ const RegisterForm = () => {
     }
   };
   return (
-    <>
-      <div className="flex flex-col md:flex-row  h-screen items-center max-w-[1000px] mx-auto">
-        <div>
-          <img src="https://i.ibb.co/X3Gg6rg/sammy-line-41.png" alt="" />
+    <div className="py-6 px-2 mb-10">
+      <div className="flex flex-col md:flex-row  items-center max-w-[1000px] mx-auto mb-16 lg:mb-20 mt-16  ">
+        <div className="w-full">
+          <img
+            className="w-full"
+            src="https://i.ibb.co/X3Gg6rg/sammy-line-41.png"
+            alt=""
+          />
         </div>
         <Card color="transparent" shadow={false}>
           <Typography
@@ -125,7 +168,7 @@ const RegisterForm = () => {
           </Typography>
         </Card>
       </div>
-    </>
+    </div>
   );
 };
 

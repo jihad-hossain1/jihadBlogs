@@ -9,10 +9,11 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import Link from "next/link";
+
 import { toast } from "react-hot-toast";
 
 export function LogInForm() {
-  const { signIn, googleLogin } = useAuth();
+  const { signIn, googleLogin, profileUpdate } = useAuth();
 
   const handleGoogleLogin = async () => {
     const toastId = toast.loading("Loading....");
@@ -29,10 +30,10 @@ export function LogInForm() {
   };
   return (
     <Container>
-      <div className="flex flex-col md:flex-row max-w-[1000px] mx-auto h-screen items-center">
-        <div className="">
+      <div className="flex flex-col md:flex-row max-w-[1000px] mx-auto  items-center py-6 px-2 lg:mb-20 lg:mt-16">
+        <div className="w-full">
           <img
-            className=""
+            className=" w-full"
             src="https://i.ibb.co/zS5bkfw/folks-cyber-security.png"
             alt=""
           />
