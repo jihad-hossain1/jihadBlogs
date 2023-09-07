@@ -232,43 +232,53 @@ function AccoutListMenu({ handleLogout, user }) {
             </Menu>
             <div className="block lg:hidden">
                 <Collapse open={isMobileMenuOpen}>
-                    <ListItem>
-                        <Link href={`login`} className="flex space-x-2 mb-2">
-                            <MdOutlineLogin className="text-xl"></MdOutlineLogin>
-                            <Typography
-                                variant="h6"
-                                color="blue-gray"
-                                className="flex items-center text-sm"
-                            >
-                                Log In
-                            </Typography>
-                        </Link>
-                    </ListItem>
-                    <ListItem onClick={handleLogout}>
-                        <Link href={`#`} className="flex space-x-2 mb-2">
-                            <MdOutlineLogout className="text-xl"></MdOutlineLogout>
-                            <Typography
-                                variant="h6"
-                                color="blue-gray"
-                                className="flex items-center text-sm"
-                            >
-                                Log Out
-                            </Typography>
-                        </Link>
-                    </ListItem>
-                    <ListItem>
-                        <Link href={`register`} className="flex space-x-2 mb-2">
-                            <AiOutlineUserAdd className="text-xl"></AiOutlineUserAdd>
+                    {
+                        user ? <>
+                            <ListItem className="flex flex-col items-center">
+                                <img className="w-10 rounded-full" src={user?.photoURL} alt="" />
+                                <h4>{user?.displayName}</h4>
+                            </ListItem>
+                            <ListItem onClick={handleLogout}>
+                                <Link href={`#`} className="flex space-x-2 mb-2">
+                                    <MdOutlineLogout className="text-xl"></MdOutlineLogout>
+                                    <Typography
+                                        variant="h6"
+                                        color="blue-gray"
+                                        className="flex items-center text-sm"
+                                    >
+                                        Log Out
+                                    </Typography>
+                                </Link>
+                            </ListItem>
+                        </> : <>
+                            <ListItem>
+                                <Link href={`login`} className="flex space-x-2 mb-2">
+                                    <MdOutlineLogin className="text-xl"></MdOutlineLogin>
+                                    <Typography
+                                        variant="h6"
+                                        color="blue-gray"
+                                        className="flex items-center text-sm"
+                                    >
+                                        Log In
+                                    </Typography>
+                                </Link>
+                            </ListItem>
+                            <ListItem>
+                                <Link href={`register`} className="flex space-x-2 mb-2">
+                                    <AiOutlineUserAdd className="text-xl"></AiOutlineUserAdd>
+                                    {/* <img className="w-10" src="https://i.ibb.co/LrshMpN/icons8-create.gif" alt="" /> */}
+                                    <Typography
+                                        variant="h6"
+                                        color="blue-gray"
+                                        className="flex items-center text-sm"
+                                    >
+                                        Create account
+                                    </Typography>
+                                </Link>
+                            </ListItem>
+                        </>
+                    }
 
-                            <Typography
-                                variant="h6"
-                                color="blue-gray"
-                                className="flex items-center text-sm"
-                            >
-                                Create account
-                            </Typography>
-                        </Link>
-                    </ListItem>
                 </Collapse>
             </div>
         </>
