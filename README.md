@@ -1,2 +1,2 @@
 # Jihad Blogs
-- [Live-site] (https://jihad-blogs-riak.vercel.app/) 
+- [Live-site](https://jihad-blogs-riak.vercel.app/) 
