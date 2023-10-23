@@ -17,6 +17,7 @@ const Navbar = () => {
   };
   return (
     <div>
+      <div></div>
       <NavbarWithMegaMenu
         handleLogout={handleLogout}
         user={user}

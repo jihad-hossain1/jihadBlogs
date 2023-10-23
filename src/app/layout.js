@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
           <div className='flex min-h-screen flex-col justify-between'>
             <div>
               <Navbar></Navbar>
-              <main>{children}</main>
+              <main className='bg-blue-gray-50/75'>{children}</main>
             </div>
             <Footer></Footer>
 
