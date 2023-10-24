@@ -33,10 +33,7 @@ const AddarticlesForm = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(info),
     };
-    const res = await fetch(
-      `http://localhost:3000/api/articles`,
-      requestOptions
-    );
+    const res = await fetch(`/api/articles`, requestOptions);
 
     if (res.status == 200) {
       toast.success("articles is added");
