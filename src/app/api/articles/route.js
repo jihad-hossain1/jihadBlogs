@@ -17,7 +17,7 @@ export const GET =async(request)=>{
 export const POST = async(request)=>{
    try {
     const body = await request.json()
-    const db = await DbConnect();
+    const db = await DatabaseConnect();
     const articlesCollection = db.collection("Articles");
     const result = await articlesCollection.insertOne(body)
     console.log(result);

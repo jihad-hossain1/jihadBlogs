@@ -38,6 +38,7 @@ import {
   FaCss3,
   FaReact,
 } from "react-icons/fa";
+import { PiShoppingCartThin } from "react-icons/pi";
 
 import { DiMongodb, DiNodejs } from "react-icons/di";
 import {
@@ -60,6 +61,99 @@ const colors = {
   pink: "bg-pink-50 text-pink-500",
   black: "bg-gray-200 text-gray-900",
 };
+
+// const navListMenuItems = [
+//   {
+//     color: "orange",
+//     icon: FaHtml5,
+//     title: "Html 5",
+//     description: "Learn about html 5 and more difficult thing.",
+//   },
+//   {
+//     color: "blue",
+//     icon: FaCss3Alt,
+//     title: "Css",
+//     description: "New thing about Css3, press releases, and resources",
+//   },
+//   {
+//     color: "blue",
+//     icon: FaCss3,
+//     title: "Css Framework",
+//     description: "New thing about Css Framework, and resources",
+//   },
+
+//   {
+//     color: "orange",
+//     icon: FaJsSquare,
+//     title: "JavaScript",
+//     description: "All basic to advanced topic are include.",
+//   },
+//   {
+//     color: "green",
+//     icon: DiMongodb,
+//     title: "Mongodb",
+//     description: "Easy way to manage your database by Mongodb",
+//   },
+//   {
+//     color: "teal",
+//     icon: DiNodejs,
+//     title: "Node Js",
+//     description: "Learn about Node.js for in your project.",
+//   },
+//   {
+//     color: "teal",
+//     icon: FaNodeJs,
+//     title: "Express Js",
+//     description: "Learn about Express.js for in your backEnd project.",
+//   },
+//   {
+//     color: "blue",
+//     icon: FaReact,
+//     title: "React",
+//     description: "Learn about React for in your frontEnd project.",
+//   },
+//   {
+//     color: "black",
+//     icon: FaNodeJs,
+//     title: "Next js",
+//     description: "Learn about Next.js for in your seo project.",
+//   },
+//   {
+//     color: "blue",
+//     icon: FaNodeJs,
+//     title: "Redux",
+//     description: "Learn about Redux for in your state management.",
+//   },
+//   {
+//     color: "cyan",
+//     icon: PuzzlePieceIcon,
+//     title: "UI Kits",
+//     description: "High quality UI Kits helps you to 2x faster.",
+//   },
+//   {
+//     color: "pink",
+//     icon: GiftIcon,
+//     title: "Open Source",
+//     description: "List of all our open-source projects, it's all free.",
+//   },
+//   {
+//     color: "green",
+//     icon: UsersIcon,
+//     title: (
+//       <div className="flex items-center gap-1">
+//         Careers{" "}
+//         <Chip
+//           size="sm"
+//           color="green"
+//           variant="ghost"
+//           value="We're hiring!"
+//           className="capitalize"
+//         />
+//       </div>
+//     ),
+//     description: "We are always looking for talented people. Join us my team!",
+//   },
+// ];
 
 const navListMenuItems = [
   {
@@ -111,49 +205,7 @@ const navListMenuItems = [
     title: "React",
     description: "Learn about React for in your frontEnd project.",
   },
-  {
-    color: "black",
-    icon: FaNodeJs,
-    title: "Next js",
-    description: "Learn about Next.js for in your seo project.",
-  },
-  {
-    color: "blue",
-    icon: FaNodeJs,
-    title: "Redux",
-    description: "Learn about Redux for in your state management.",
-  },
-  {
-    color: "cyan",
-    icon: PuzzlePieceIcon,
-    title: "UI Kits",
-    description: "High quality UI Kits helps you to 2x faster.",
-  },
-  {
-    color: "pink",
-    icon: GiftIcon,
-    title: "Open Source",
-    description: "List of all our open-source projects, it's all free.",
-  },
-  {
-    color: "green",
-    icon: UsersIcon,
-    title: (
-      <div className="flex items-center gap-1">
-        Careers{" "}
-        <Chip
-          size="sm"
-          color="green"
-          variant="ghost"
-          value="We're hiring!"
-          className="capitalize"
-        />
-      </div>
-    ),
-    description: "We are always looking for talented people. Join us my team!",
-  },
 ];
-
 function AccoutListMenu({ handleLogout, user }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -372,7 +424,7 @@ function NavListMenu() {
           </Typography>
         </MenuHandler>
         <MenuList className="hidden max-w-screen-xl rounded-xl lg:block">
-          <ul className="grid grid-cols-4 gap-y-2">{renderItems}</ul>
+          <ul className="grid grid-cols-1 gap-y-2">{renderItems}</ul>
         </MenuList>
       </Menu>
       <div className="block lg:hidden">
@@ -423,40 +475,43 @@ export function NavbarWithMegaMenu({ handleLogout, user }) {
   }, []);
 
   return (
-    <div className="shadow-0 rounded-sm  mx-auto max-w-screen-xl px-4 py-2 ">
+    <div className=" shadow-0 rounded-sm  mx-auto max-w-screen-xl px-4 py-2 ">
       <div className="flex items-center  justify-between text-blue-gray-700">
-        <div
-          className="font-semibold text-blue-gray-600 mr-4 cursor-pointer py-1.5 lg:ml-2"
-        >
+        {/* <div className="font-semibold text-blue-gray-600 mr-4 cursor-pointer py-1.5 lg:ml-2">
           Jihad Blogs
-        </div>
+        </div> */}
         <div className="hidden lg:block">
-                     
-            <NavList handleLogout={handleLogout} user={user} />
-          </div>
-        <div className="hidden gap-2 lg:flex">
-          <ListItem className="flex items-center gap-2 py-2 pr-4">
-            <MdShoppingCartCheckout className="h-[18px] w-[18px]" />
-            Buy product
+          <NavList handleLogout={handleLogout} user={user} />
+        </div>
+        <div className="">
+          <ListItem className="flex text-sm items-center gap-2 py-2 ">
+            <PiShoppingCartThin className="text-2xl" />
+            Buy Products
           </ListItem>
-              </div>
-              <div className="flex items-center space-x-3">
-                  <h4 className="lg:hidden  flex">
-                      <Input name="search"  className="" label="Search" variant="outlined" type="search" />
-               </h4>
-                  
-                  <IconButton
-          variant="text"
-          color="blue-gray"
-          className="lg:hidden"
-          onClick={() => setOpenNav(!openNav)}
-        >
-          {openNav ? (
-            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
-          ) : (
-            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
-          )}
-        </IconButton>
+        </div>
+        <div className="lg:hidden flex items-center space-x-3">
+          <h4 className="lg:hidden  flex">
+            <Input
+              name="search"
+              className=""
+              label="Search"
+              variant="outlined"
+              type="search"
+            />
+          </h4>
+
+          <IconButton
+            variant="text"
+            color="blue-gray"
+            className="lg:hidden"
+            onClick={() => setOpenNav(!openNav)}
+          >
+            {openNav ? (
+              <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+            ) : (
+              <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+            )}
+          </IconButton>
         </div>
       </div>
       <Collapse open={openNav}>
