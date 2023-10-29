@@ -2,10 +2,8 @@
 
 import React, { createElement, useEffect, useState } from "react";
 import {
-  Navbar,
   Collapse,
   Typography,
-  Button,
   IconButton,
   List,
   ListItem,
@@ -13,20 +11,15 @@ import {
   MenuHandler,
   MenuList,
   MenuItem,
-  Chip,
   Input,
 } from "@material-tailwind/react";
 import {
   ChevronDownIcon,
   Bars3Icon,
   XMarkIcon,
-  UsersIcon,
-  PuzzlePieceIcon,
-  GiftIcon,
   UserPlusIcon,
   HomeIcon,
   PencilSquareIcon,
-  ExclamationTriangleIcon,
   ComputerDesktopIcon,
 } from "@heroicons/react/24/outline";
 import {
@@ -255,6 +248,9 @@ function AccoutListMenu({ handleLogout, user }) {
                   />
                   <h4>{user?.displayName}</h4>
                 </ListItem>
+                <Link className="" href={`/dashboard`}>
+                  <ListItem>Admin</ListItem>
+                </Link>
                 <ListItem onClick={handleLogout}>
                   <Link href={`#`} className="flex space-x-2 mb-2">
                     <MdOutlineLogout className="text-xl"></MdOutlineLogout>
@@ -446,7 +442,7 @@ function NavList({ handleLogout, user }) {
 
       <NavListMenu />
 
-      <Link href="/" className="text-sm">
+      <Link href="/myproject" className="text-sm">
         <ListItem className="flex items-center gap-2 py-2 pr-4">
           <ComputerDesktopIcon className="h-[18px] w-[18px]" />
           My projects

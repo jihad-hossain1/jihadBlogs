@@ -2,9 +2,6 @@ import AuthContext from "@/context/AuthContext";
 import { useContext } from "react";
 
 
-
-
-
 const useAuth = () => {
     const auth = useContext(AuthContext)
     const inClient = typeof window !== 'undefined'

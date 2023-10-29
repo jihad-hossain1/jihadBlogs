@@ -1,18 +1,9 @@
 // 'use client'
 
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import { LiaBookmark } from "react-icons/lia";
 
 const SingleArticle = ({ article }) => {
   return (
-    // <section
-    //   style={{ backgroundImage: `url(${article?.image})` }}
-    //   className="bg-no-repeat bg-cover w-full min-h-[300px] group p-1 ring-4 ring-white"
-    // >
-
-    // </section>
     <>
       <div className="bg-white p-2 rounded-sm">
         <div className="group">
@@ -24,7 +15,7 @@ const SingleArticle = ({ article }) => {
                   <h4 className="text-sm md:text-xl font-bold">
                     {article?.articleTitle}
                   </h4>
-                  <h4 className="uppercase inline-block text-xs mt-2 md:text-sm border border-white py-1 px-2 rounded-3xl">
+                  <h4 className=" uppercase inline-block text-xs mt-2  border border-white py-1 px-2 rounded-3xl">
                     {article?.articleCategory}
                   </h4>
                 </div>
@@ -44,5 +35,3 @@ const SingleArticle = ({ article }) => {
 };
 
 export default SingleArticle;
-
-

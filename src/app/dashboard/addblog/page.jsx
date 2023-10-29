@@ -22,7 +22,7 @@ const AddarticlesForm = () => {
 
     const info = {
       articleTitle,
-      category: category,
+      articleCategory: category,
       details,
       author,
       email,
