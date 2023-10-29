@@ -41,7 +41,7 @@ import {
 } from "react-icons/md";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import Link from "next/link";
-import Image from "next/image";
+
 
 const colors = {
   blue: "bg-blue-50 text-blue-500",
@@ -448,7 +448,7 @@ function NavList({ handleLogout, user }) {
           My projects
         </ListItem>
       </Link>
-      <Link className="text-sm" href="/">
+      <Link className="text-sm" href="/contact">
         <ListItem className="flex items-center gap-2 py-2 pr-4">
           <UserPlusIcon className="h-[18px] w-[18px]" />
           Contact me
@@ -480,10 +480,11 @@ export function NavbarWithMegaMenu({ handleLogout, user }) {
           <NavList handleLogout={handleLogout} user={user} />
         </div>
         <div className="">
+          <Link href={`/products`}>
           <ListItem className="flex text-sm items-center gap-2 py-2 ">
             <PiShoppingCartThin className="text-2xl" />
             Buy Products
-          </ListItem>
+          </ListItem></Link>
         </div>
         <div className="lg:hidden flex items-center space-x-3">
           <h4 className="lg:hidden  flex">
