@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { IoLocationOutline } from "react-icons/io5";
+// import { IoLocationOutline } from "react-icons/io5";
 import { PiPhonePlusThin } from "react-icons/pi";
-import { CiMail } from "react-icons/ci";
+import { CiMail, CiLocationOn } from "react-icons/ci";
 import { Button, Input, Textarea } from "@material-tailwind/react";
 import toast from "react-hot-toast";
 
@@ -53,7 +53,7 @@ const ContactPage = () => {
                 </div>
               </div>
               <div className="flex space-x-5">
-                <IoLocationOutline className="text-3xl" />
+                <CiLocationOn className="text-3xl" />
                 <div>
                   <h4 className="text-blue-gray-900 mb-2">
                     Bogura, Bangladesh
@@ -107,6 +107,17 @@ const ContactPage = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="bg-white p-2  rounded-sm shadow-sm mt-6">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d28938.390317003148!2d89.38575645653891!3d24.95594698063119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjTCsDU4JzE4LjIiTiA4OcKwMjInMzEuNiJF!5e0!3m2!1sen!2sbd!4v1698595124485!5m2!1sen!2sbd"
+         className="w-full h-[600px]"
+          // style="border"
+
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
     </div>
   );

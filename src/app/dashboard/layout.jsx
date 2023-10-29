@@ -9,8 +9,14 @@ const DashboardLayout = ({ children }) => {
           <Link href={"/dashboard/addblog"}>
             <li>add blog</li>
           </Link>
+          <Link href={"/dashboard/addproject"}>
+            <li>add project</li>
+          </Link>
           <Link href={"/dashboard/manageBlog"}>
             <li>Manage blog</li>
+          </Link>
+          <Link href={"/dashboard/manageproject"}>
+            <li>Manage projects</li>
           </Link>
           <Link href={"/dashboard"}>
             <li>Dash-Home</li>

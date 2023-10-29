@@ -13,7 +13,7 @@
     "@material-tailwind/react": "^2.1.1",
     "antd": "^5.8.6",
     "autoprefixer": "10.4.15",
-    "axios": "^1.5.1",
+    "axios": "^1.6.0",
     "encoding": "^0.1.13",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
