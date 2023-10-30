@@ -1,6 +1,6 @@
 "use client";
 
-import axios from "axios";
+
 import React from "react";
 import { PiTrashSimpleLight, PiEyeLight } from "react-icons/pi";
 import { VscEdit } from "react-icons/vsc";
